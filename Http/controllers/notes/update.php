@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\NotesController;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
@@ -9,9 +10,7 @@ $db = App::resolve(Database::class);
 $currentUserId = 222221;
 
 // find the corresponding note
-$note = $db->query('select * from notes where id = :id', [
-    'id' => $_POST['id']
-])->findOrFail();
+$note = NotesController::selectNote($db);
 
 // authorize that the current user can edit the note
 authorize($note['user_id'] === $currentUserId);
@@ -32,10 +31,7 @@ if (count($errors)) {
     ]);
 }
 
-$db->query('update notes set body = :body where id = :id', [
-    'id' => $_POST['id'],
-    'body' => $_POST['body']
-]);
+NotesController::updateNote();
 
 // redirect the user
 header('location: /notes');

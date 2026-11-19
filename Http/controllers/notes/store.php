@@ -1,6 +1,7 @@
 <?php
 
 use Core\App;
+use Core\NotesController;
 use Core\Validator;
 use Core\Database;
 
@@ -18,10 +19,7 @@ if (! empty($errors)) {
     ]);
 }
 
-$db->query('INSERT INTO notes(body, user_id) VALUES(:body, :user_id)', [
-    'body' => $_POST['body'],
-    'user_id' => 1
-]);
+NotesController::addNote($db);
 
 header('location: /notes');
 die();

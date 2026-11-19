@@ -2,9 +2,10 @@
 
 use Core\App;
 use Core\Database;
+use Core\NotesController;
 
 $db = App::resolve(Database::class);
-$notes = $db->query('select * from notes where user_id = 1')->get();
+$notes = NotesController::getAllNotes($db);
 
 view("notes/index.view.php", [
     'heading' => 'My Notes',
