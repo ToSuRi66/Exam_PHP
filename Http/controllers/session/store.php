@@ -18,4 +18,8 @@ if (!$signedIn) {
     )->throw();
 }
 
+if ($signedIn) {
+    $_SESSION['userId'] = $_POST['email'];
+}
+
 redirect('/');

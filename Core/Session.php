@@ -43,4 +43,12 @@ class Session
         $params = session_get_cookie_params();
         setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
     }
+
+    public static function setUserId($email)
+    {
+        $_SESSION['dbUserId'] = Database::class->query("SELECT id FROM users WHERE email = :email",[
+            'email' => $email
+            ]);
+        var_dump($_SESSION);
+    }
 }

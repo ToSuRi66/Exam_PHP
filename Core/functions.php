@@ -1,6 +1,7 @@
 <?php
 
 use Core\Response;
+use Core\Session;
 
 function dd($value)
 {
@@ -25,9 +26,10 @@ function abort($code = 404)
     die();
 }
 
-function authorize($condition, $status = Response::FORBIDDEN)
+function authorize($user, $status = Response::FORBIDDEN)
 {
-    if (! $condition) {
+    dd($user, $_SESSION['dbUserId']);
+    if (! $user === $_SESSION['dbUserId']) {
         abort($status);
     }
 

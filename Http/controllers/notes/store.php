@@ -1,9 +1,9 @@
 <?php
 
 use Core\App;
-use Core\NotesController;
-use Core\Validator;
 use Core\Database;
+use Core\Validator;
+use Http\controllers\notes\NotesController;
 
 $db = App::resolve(Database::class);
 $errors = [];
@@ -19,7 +19,7 @@ if (! empty($errors)) {
     ]);
 }
 
-NotesController::addNote($db);
+NotesController::addNote();
 
 header('location: /notes');
 die();

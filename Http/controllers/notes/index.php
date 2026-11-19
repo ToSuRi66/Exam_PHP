@@ -2,10 +2,10 @@
 
 use Core\App;
 use Core\Database;
-use Core\NotesController;
+use Http\controllers\notes\NotesController;
 
 $db = App::resolve(Database::class);
-$notes = NotesController::getAllNotes($db);
+$notes = NotesController::getAllNotes();
 
 view("notes/index.view.php", [
     'heading' => 'My Notes',

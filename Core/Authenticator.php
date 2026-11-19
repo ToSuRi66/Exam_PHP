@@ -8,15 +8,15 @@ class Authenticator
     {
         $user = App::resolve(Database::class)
             ->query('select * from users where email = :email', [
-            'email' => $email
-        ])->find();
+                'email' => $email
+            ])->find();
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $this->login([
                     'email' => $email
                 ]);
-
+                Session::setUserId($email);
                 return true;
             }
         }
