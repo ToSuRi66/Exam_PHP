@@ -25,7 +25,7 @@ class NoteDAOImpl implements NoteDAO
     public function getNotes()
     {
         return $this->db->query('select * from notes where user_id = :user', [
-            'user' => $_SESSION['dbUserId']
+            'user' => $_SESSION['user']['userId']
         ])->get();
     }
 

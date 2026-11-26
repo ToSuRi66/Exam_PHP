@@ -34,6 +34,7 @@ class Authenticator
             'email' => $user['email'],
             'userId' => $userId['id']
         ];
+        dd($_SESSION);
 
         session_regenerate_id(true);
     }
