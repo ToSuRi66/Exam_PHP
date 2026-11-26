@@ -37,11 +37,11 @@ class NoteDAOImpl implements NoteDAO
         ]);
     }
 
-    public function updateNote($id, $nota)
+    public function updateNote($id, $body)
     {
         $this->db->query('update notes set body = :body where id = :id', [
-            'id' => $_POST['id'],
-            'body' => $_POST['body']
+            'id' => $id,
+            'body' => $body,
         ]);
     }
 

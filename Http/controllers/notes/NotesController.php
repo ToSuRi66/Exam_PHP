@@ -87,4 +87,25 @@ class NotesController
             'note' => $note
         ]);
     }
+
+    function update(){
+        $id = $_POST['id'];
+        $note = $this->daoNotes->getNote($id);
+        $body = $_POST['body'];
+        if (! Validator::string($body, 1, 1000)) {
+            $this->errors['body'] = 'A body of no more than 1,000 characters is required.';
+        }
+
+        if (! empty($errors)) {
+            return view("notes/edit.view.php", [
+                'heading' => 'Edit Note',
+                'errors' => $this->errors,
+                'note' => $note
+            ]);
+        }
+        $this->daoNotes->updateNote($id, $body);
+
+        header('location: /notes');
+        die();
+    }
 }
