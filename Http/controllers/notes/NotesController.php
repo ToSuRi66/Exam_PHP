@@ -19,15 +19,15 @@ class NotesController
 
     function destroy()
     {
-        $userId = $_SESSION['userId'];
-        $note = selectNote();
-
-        authorize($note['user_id']);
-
-        deleteNote();
-
-        header('location: /notes');
-        exit();
+//        $userId = $_SESSION['user']['userId'];
+//        $note = selectNote();
+//
+//        authorize($note['user_id']);
+//
+//        deleteNote();
+//
+//        header('location: /notes');
+//        exit();
     }
 
 
@@ -76,5 +76,15 @@ class NotesController
             header('location: /notes');
             die();
         }
+    }
+
+    function edit(){
+        $id = $_GET['id'];
+        $note = $this->daoNotes->getNote($id);
+        authorize($note['user_id'] === $_SESSION['user']['userId']);
+        view("notes/edit.view.php", [
+            'heading' => 'Edit Note',
+            'note' => $note
+        ]);
     }
 }

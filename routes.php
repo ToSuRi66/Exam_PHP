@@ -10,7 +10,7 @@ $router->get('/notes', [NotesController::class, 'index'])->only('auth');
 $router->get('/note', [NotesController::class, 'show'])->only('auth');
 $router->delete('/note', [NotesController::class, 'destroy'])->only('auth');
 
-$router->get('/note/edit', 'notes/edit.php');
+$router->get('/note/edit', [NotesController::class, 'edit'])->only('auth');
 $router->patch('/note', 'notes/update.php');
 
 $router->get('/notes/create', [NotesController::class, 'create']);
