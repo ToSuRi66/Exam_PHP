@@ -17,7 +17,7 @@ class NotesController
         $this->daoNotes = NoteDAOFactory::getInstance()->getImplementacio();
     }
 
-    function destroyNote()
+    function destroy()
     {
         $userId = $_SESSION['userId'];
         $note = selectNote();
