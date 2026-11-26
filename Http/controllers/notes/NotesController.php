@@ -42,12 +42,18 @@ class NotesController
     function show(){
         $id = $_GET['id'];
         $note = $this->daoNotes->getNote($id);
-//        dd($_SESSION);
         authorize($note['user_id'] === $_SESSION['user']['userId']);
 
         view("notes/show.view.php", [
             'heading' => 'Note',
             'note' => $note
+        ]);
+    }
+
+    function create(){
+        view("notes/create.view.php", [
+            'heading' => 'Create Note',
+            'errors' => []
         ]);
     }
 }

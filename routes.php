@@ -13,7 +13,7 @@ $router->delete('/note', 'notes/destroy.php');
 $router->get('/note/edit', 'notes/edit.php');
 $router->patch('/note', 'notes/update.php');
 
-$router->get('/notes/create', 'notes/create.php');
+$router->get('/notes/create', [NotesController::class, 'create']);
 $router->post('/notes', 'notes/store.php');
 
 $router->get('/register', 'registration/create.php')->only('guest');
