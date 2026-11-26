@@ -4,7 +4,6 @@ namespace Http\controllers\notes;
 
 use Core\App;
 use Core\Database;
-use Core\Session;
 
 class NotesController
 {

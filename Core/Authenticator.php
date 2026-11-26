@@ -16,7 +16,6 @@ class Authenticator
                 $this->login([
                     'email' => $email
                 ]);
-                Session::setUserId($email);
                 return true;
             }
         }
@@ -26,8 +25,14 @@ class Authenticator
 
     public function login($user)
     {
+        $db = App::resolve(Database::class);
+        $userId = $db->query('SELECT id FROM users WHERE email = :email',[
+            'email' => $user
+        ])->find();
+
         $_SESSION['user'] = [
-            'email' => $user['email']
+            'email' => $user['email'],
+            'userId' => $user['userId']
         ];
 
         session_regenerate_id(true);
