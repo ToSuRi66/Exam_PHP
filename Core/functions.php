@@ -26,10 +26,9 @@ function abort($code = 404)
     die();
 }
 
-function authorize($user, $status = Response::FORBIDDEN)
+function authorize($condition, $status = Response::FORBIDDEN)
 {
-    dd($user, $_SESSION['dbUserId']);
-    if (! $user === $_SESSION['dbUserId']) {
+    if (! $condition) {
         abort($status);
     }
 

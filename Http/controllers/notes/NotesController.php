@@ -18,7 +18,7 @@ class NotesController
 
     function destroyNote()
     {
-        $userId = $_SESSION['dbUserId'];
+        $userId = $_SESSION['userId'];
         $note = selectNote();
 
         authorize($note['user_id']);
@@ -38,5 +38,16 @@ class NotesController
             'notes' => $notes
         ]);
     }
-    
+
+    function show(){
+        $id = $_GET['id'];
+        $note = $this->daoNotes->getNote($id);
+//        dd($_SESSION);
+        authorize($note['user_id'] === $_SESSION['user']['userId']);
+
+        view("notes/show.view.php", [
+            'heading' => 'Note',
+            'note' => $note
+        ]);
+    }
 }
