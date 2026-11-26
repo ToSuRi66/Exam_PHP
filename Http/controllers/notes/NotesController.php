@@ -19,15 +19,15 @@ class NotesController
 
     function destroy()
     {
-//        $userId = $_SESSION['user']['userId'];
-//        $note = selectNote();
-//
-//        authorize($note['user_id']);
-//
-//        deleteNote();
-//
-//        header('location: /notes');
-//        exit();
+        $id = $_POST['id'];
+        $nota = $this->daoNotes->getNote($id);
+
+        if ($nota !== null) {
+            authorize($nota['user_id'] === $_SESSION['user']['userId']);
+            $this->daoNotes->deleteNote($id);
+            header('Location: /notes');
+            exit();
+        }
     }
 
 

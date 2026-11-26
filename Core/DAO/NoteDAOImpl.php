@@ -18,7 +18,7 @@ class NoteDAOImpl implements NoteDAO
     public function getNote($id)
     {
         return $this->db->query('select * from notes where id = :id', [
-            'id' => $_GET['id']
+            'id' => $id,
         ])->findOrFail();
     }
 
