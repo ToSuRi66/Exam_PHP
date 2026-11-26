@@ -38,4 +38,5 @@ class NotesController
             'notes' => $notes
         ]);
     }
+    
 }
