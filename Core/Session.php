@@ -48,7 +48,7 @@ class Session
     {
         $_SESSION['dbUserId'] = Database::class->query("SELECT id FROM users WHERE email = :email",[
             'email' => $email
-            ]);
+            ])->find();
         var_dump($_SESSION);
     }
 }
