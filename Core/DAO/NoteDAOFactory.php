@@ -13,4 +13,8 @@ class NoteDAOFactory
         }
         return self::$instance;
     }
+
+    public function getImplementacio(){
+        return new NoteDAOImpl();
+    }
 }

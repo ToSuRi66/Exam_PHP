@@ -4,7 +4,7 @@ namespace Http\controllers\notes;
 
 use Core\App;
 use Core\DAO\NoteDAO;
-use Core\DAOFact;
+use Core\DAO\NoteDAOFactory;
 
 class NotesController
 {
@@ -13,7 +13,7 @@ class NotesController
 
     public function __construct()
     {
-        $this->daoNotes = NoteDAO::getInstance();
+        $this->daoNotes = NoteDAOFactory::getInstance()->getImplementacio();
     }
 
     function destroyNote()
@@ -32,7 +32,7 @@ class NotesController
 
     function index()
     {
-        $notes = getAllNotes();
+        $notes = $this->daoNotes->getNotes();
         view("notes/index.view.php", [
             'heading' => 'My Notes',
             'notes' => $notes

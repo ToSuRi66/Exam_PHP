@@ -27,12 +27,12 @@ class Authenticator
     {
         $db = App::resolve(Database::class);
         $userId = $db->query('SELECT id FROM users WHERE email = :email',[
-            'email' => $user
+            'email' => $user['email']
         ])->find();
 
         $_SESSION['user'] = [
             'email' => $user['email'],
-            'userId' => $user['userId']
+            'userId' => $userId['id']
         ];
 
         session_regenerate_id(true);
