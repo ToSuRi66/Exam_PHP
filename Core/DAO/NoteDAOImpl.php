@@ -1,10 +1,12 @@
 <?php
 
+namespace Core\DAO;
+
 use Core\App;
-use Core\DAOFact\DAOFactory;
 use Core\Database;
 
-class DAOImpl implements DAOFactory
+
+class NoteDAOImpl implements NoteDAO
 {
     private $db;
 

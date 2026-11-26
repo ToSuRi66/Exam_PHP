@@ -3,10 +3,18 @@
 namespace Http\controllers\notes;
 
 use Core\App;
-use Core\Database;
+use Core\DAO\NoteDAO;
+use Core\DAOFact;
 
 class NotesController
 {
+    private $errors = [];
+    private NoteDAO $daoNotes;
+
+    public function __construct()
+    {
+        $this->daoNotes = NoteDAO::getInstance();
+    }
 
     function destroyNote()
     {
